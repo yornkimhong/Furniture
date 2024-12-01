@@ -1,16 +1,19 @@
 <template>
   <header
-    :class="{ 'mx-auto bg-primary md:bg-transparent': isScrolled, 'bg-transparent': !isScrolled }"
-    class="fixed top-0 left-0 right-0 z-20 md:px-2 max-w-screen mx-auto"
+    :class="{
+      'mx-auto bg-primary md:bg-transparent': isScrolled,
+      'bg-transparent': !isScrolled,
+    }"
+    class="fixed top-0 left-0 right-0 z-20 md:px-2 max-w-screen mx-auto overflow-x-hidden"
   >
     <nav
-     :class="{ 'md:justify-center': isScrolled }"
+      :class="{ 'md:justify-center': isScrolled }"
       class="relative flex items-center justify-between py-2 md:py-4 max-w-7xl mx-auto px-6 md:px-0 font-bold text-white"
     >
       <!-- Logo -->
       <a
         href="#"
-        :class="{ 'md:hidden': isScrolled }"
+        :class="{'md:hidden lg:block lg:invisible ' : isScrolled }"
         class="flex items-center space-x-3 rtl:space-x-reverse"
       >
         <img
@@ -28,34 +31,55 @@
           <a :class="{ active: activeSection === 'home' }" href="#home">Home</a>
         </div>
         <div class="inline-block text-primary">
-          <a :class="{ active: activeSection === 'about' }" href="#about">About</a>
+          <a :class="{ active: activeSection === 'about' }" href="#about"
+            >About</a
+          >
         </div>
         <div class="inline-block whitespace-nowrap text-primary">
-          <a :class="{ active: activeSection === 'bestselling' }" href="#bestselling">Best Selling</a>
+          <a
+            :class="{ active: activeSection === 'bestselling' }"
+            href="#bestselling"
+            >Best Selling</a
+          >
         </div>
         <div class="inline-block text-primary">
-          <a :class="{ active: activeSection === 'collection' }" href="#collection">Collection</a>
+          <a
+            :class="{ active: activeSection === 'collection' }"
+            href="#collection"
+            >Collection</a
+          >
         </div>
         <div class="inline-block text-primary">
-          <a :class="{ active: activeSection === 'trending' }" href="#trending">Trending</a>
+          <a :class="{ active: activeSection === 'trending' }" href="#trending"
+            >Trending</a
+          >
         </div>
         <div class="inline-block whitespace-nowrap text-primary">
-          <a :class="{ active: activeSection === 'joinus' }" href="#joinus">Join us</a>
+          <a :class="{ active: activeSection === 'joinus' }" href="#joinus"
+            >Join us</a
+          >
         </div>
         <div class="inline-block text-primary pe-2">
-          <a :class="{ active: activeSection === 'testimonial' }" href="#testimonial">Testimonial</a>
+          <a
+            :class="{ active: activeSection === 'testimonial' }"
+            href="#testimonial"
+            >Testimonial</a
+          >
         </div>
       </div>
 
       <!-- Hamburger Button for Mobile -->
-      <div class="md:hidden z-50 pt-2">
+      <div class="md:hidden z-50">
         <button
           @click="toggleMenu"
           :class="{ open: isMenuOpen }"
           type="button"
           class="block hamburger focus:outline-none"
         >
-          <span class="hamburger-top" :class="{ menuActive: isMenuOpen }"></span>
+          <span
+            class="hamburger-top"
+            :class="{ menuActive: isMenuOpen }"
+          ></span>
           <span class="hamburger-middle"></span>
           <span class="hamburger-bottom"></span>
         </button>
@@ -78,27 +102,47 @@
       @click.self="toggleMenu"
       class="fixed top-0 left-0 w-full min-h-screen z-10"
     >
-      <div class="bg-secondary p-8 text-black font-alata flex flex-col items-center space-y-6 pt-24">
+      <div
+        class="bg-secondary p-8 text-black font-alata flex flex-col items-center space-y-6 pt-24"
+      >
         <div @click="toggleMenu" class="inline-block text-primary">
           <a :class="{ active: activeSection === 'home' }" href="#home">Home</a>
         </div>
         <div @click="toggleMenu" class="inline-block text-primary">
-          <a :class="{ active: activeSection === 'about' }" href="#about">About</a>
+          <a :class="{ active: activeSection === 'about' }" href="#about"
+            >About</a
+          >
         </div>
         <div @click="toggleMenu" class="inline-block text-primary">
-          <a :class="{ active: activeSection === 'bestselling' }" href="#bestselling">Best Selling</a>
+          <a
+            :class="{ active: activeSection === 'bestselling' }"
+            href="#bestselling"
+            >Best Selling</a
+          >
         </div>
         <div @click="toggleMenu" class="inline-block text-primary">
-          <a :class="{ active: activeSection === 'collection' }" href="#collection">Collection</a>
+          <a
+            :class="{ active: activeSection === 'collection' }"
+            href="#collection"
+            >Collection</a
+          >
         </div>
         <div @click="toggleMenu" class="inline-block text-primary">
-          <a :class="{ active: activeSection === 'trending' }" href="#trending">Trending</a>
+          <a :class="{ active: activeSection === 'trending' }" href="#trending"
+            >Trending</a
+          >
         </div>
         <div @click="toggleMenu" class="inline-block text-primary">
-          <a :class="{ active: activeSection === 'joinus' }" href="#joinus">Join us</a>
+          <a :class="{ active: activeSection === 'joinus' }" href="#joinus"
+            >Join us</a
+          >
         </div>
         <div @click="toggleMenu" class="inline-block text-primary pe-2">
-          <a :class="{ active: activeSection === 'testimonial' }" href="#testimonial">Testimonial</a>
+          <a
+            :class="{ active: activeSection === 'testimonial' }"
+            href="#testimonial"
+            >Testimonial</a
+          >
         </div>
         <a @click="toggleMenu" href="#bestselling" class="w-full text-center">
           <button
@@ -202,8 +246,21 @@ export default {
   transition: all 0.5s;
 }
 
+.hamburger-middle {
+  transform: translateY(7px);
+}
+
+.hamburger-bottom {
+  transform: translateY(14px);
+}
+
+.open {
+  transform: rotate(90deg);
+}
+
 .open .hamburger-top {
   transform: rotate(45deg) translateY(6px) translateX(6px);
+  background: #8e9d74;
 }
 
 .open .hamburger-middle {
@@ -212,8 +269,8 @@ export default {
 
 .open .hamburger-bottom {
   transform: rotate(-45deg) translateY(6px) translateX(-6px);
+  background: #8e9d74;
 }
-
 .fade-enter-active,
 .fade-leave-active {
   transition: all 0.4s ease;
